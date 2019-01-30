@@ -85,7 +85,7 @@ class GluonBaseService(object):
         param_name = self.signature['inputs'][0]['data_name']
         input_shape = self.signature['inputs'][0]['data_shape']
 
-        img = data[0].get(param_name)
+        img = data[0].get('body')
 
         if img is None:
             raise IOError("Invalid parameter given")
