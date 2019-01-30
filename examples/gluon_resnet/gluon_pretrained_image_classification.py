@@ -193,16 +193,16 @@ class PretrainedResnetService(GluonBaseService):
 svc = PretrainedResnetService()
 
 
-def pretrained_gluon_resnet(data, context):
+def pretrained_gluon_resnet(data, params):
     """
     This is the handler that needs to be registerd in the model-archive.
     :param data:
-    :param context:
+    :param params:
     :return:
     """
     res = None
     if not svc.initialized:
-        svc.initialize(context)
+        svc.initialize(params)
 
     if data is not None:
         res = svc.predict(data)
