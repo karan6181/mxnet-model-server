@@ -173,7 +173,10 @@ class PretrainedResnetService(GluonBaseService):
         :param params: This is the same as the Context object
         :return:
         """
-        self.net = mx.gluon.model_zoo.vision.resnet18_v1(pretrained=True)
+        sys_prop = params.system_properties
+        gpu_id = sys_prop.get("gpu_id")
+        ctx = mx.cpu() if gpu_id is None else mx.gpu(gpu_id)
+        self.net = mx.gluon.model_zoo.vision.resnet18_v1(pretrained=True, ctx=ctx)
         super(PretrainedResnetService, self).initialize(params)
 
     def postprocess(self, data):
